@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PFB - Plateforme Financière Professionnelle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a2463;
+            --secondary-color: #3e92cc;
+            --accent-color: #2dc7ff;
+            --light-color: #f8f9fa;
+            --dark-color: #212934;
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+            --warning-color: #ff9800;
+            --text-color: #333;
+            --text-light: #6c757d;
+            --border-color: #dee2e6;
+            --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: #f5f7f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 30px;
+        }
+        
+        .main-content {
+            grid-column: 2;
+        }
+        
+        .ad-sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .ad-title {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .ad-unit {
+            background: linear-gradient(135deg, #f5f7fa, #e4e8f0);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+            border: 2px dashed var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .ad-unit:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transform: translateY(-3px);
+        }
+        
+        .ad-unit h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        
+        .ad-unit p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+        
+        .ad-unit .ad-cta {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        
+        .ad-unit .ad-cta:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .ad-unit .ad-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #3a7bd5, #00d2ff);
+            border-radius: 8px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .ad-unit .ad-image:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #1e3a8a);
+            color: white;
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            grid-column: 1 / -1;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent-color);
+            font-size: 2.2rem;
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin-right: 2rem;
+        }
+        
+        .nav-links li {
+            margin: 0 1.2rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+        
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+            margin-right: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            font-weight: 700;
+        }
+        
+        .btn-primary:hover {
+            background: #00b4e6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 36, 99, 0.85), rgba(10, 36, 99, 0.9)), url('https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3') no-repeat center center/cover;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 3rem;
+            grid-column: 1 / -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        /* Stock Market Section */
+        .stock-market {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 3rem;
+        }
+        
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .live-badge {
+            display: flex;
+            align-items: center;
+            background: var(--light-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--success-color);
+        }
+        
+        .live-badge i {
+            margin-right: 0.5rem;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .stock-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .stock-item {
+            background: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+        }
+        
+        .stock-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
+        }
+        
+        .stock-name {
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--dark-color);
+        }
+        
+        .stock-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .stock-change {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .positive {
+            color: var(--success-color);
+            background: rgba(76, 175, 80, 0.1);
+        }
+        
+        .negative {
+            color: var(--danger-color);
+            background: rgba(244, 67, 54, 0.1);
+        }
+        
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .news-img-container {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .news-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .news-card:hover .news-img {
+            transform: scale(1.05);
+        }
+        
+        .news-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .news-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark-color);
+            line-height: 1.4;
+        }
+        
+        .news-excerpt {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .news-date {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .news-read-more {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .news-read-more i {
+            margin-left: 0.4rem;
+            transition: var(--transition);
+        }
+        
+        .news-read-more:hover i {
+            transform: translateX(4px);
+        }
+        
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid var(--secondary-color);
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+            z-index: 1;
+        }
+        
+        .feature-card:hover:before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-icon:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(62, 146, 204, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+        
+        .feature-title {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--primary-color);
+            z-index: 2;
+            position: relative;
+        }
+        
+        .feature-desc {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            z-index: 2;
+            position: relative;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            grid-column: 1 / -1;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+        
+        .footer-section p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: #a0aec0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0aec0;
+            font-size: 0.9rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem 15px 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            .container {
+                grid-template-columns: 250px 1fr 250px;
+                gap: 25px;
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 1fr 2fr;
+            }
+            
+            .ad-sidebar.right {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .ad-sidebar {
+                display: none;
+            }
+            
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            .stock-list {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            .auth-buttons {
+                margin-top: 1rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>PFB</span>
+            </div>
+            
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="marchés.html">Marché</a></li>
+                    <li><a href="actualité.html">Actualités</a></li>
+                    <li><a href="#">Formation</a></li>
+                    <li><a href="#">Brokers</a></li>
+                    <li><a href="#">Bots</a></li>
+                    <li><a href="#">À propos</a></li>
+                </ul>
+                
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">Connexion</a>
+                    <a href="#" class="btn btn-primary">Inscription</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar gauche (publicité) -->
+        <aside class="ad-sidebar left">
+            <div class="ad-title">Espace Publicitaire</div>
+            <div class="ad-unit">
+                <div class="ad-image">BROKER PREMIUM</div>
+                <h3>Offre Exclusive</h3>
+                <p>Ouvrez un compte et obtenez 5 trades gratuits sans commission</p>
+                <a href="#" class="ad-cta">Profiter de l'offre</a>
+            </div>
+            <div class="ad-unit">
+                <div class="ad-image">FORMATION ELITE</div>
+                <h3>Masterclass Trading</h3>
+                <p>Apprenez les stratégies des traders professionnels en 30 jours</p>
+                <a href="#" class="ad-cta">Démarrer maintenant</a>
+            </div>
+            <div class="ad-unit">
+                <div class="ad-image">ANALYSE EXPERT</div>
+                <h3>Signaux Quotidiens</h3>
+                <p>Recevez chaque matin les analyses des experts de marché</p>
+                <a href="#" class="ad-cta">Essayer gratuitement</a>
+            </div>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main class="main-content">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Votre succès financier commence avec PFB</h1>
+                    <p>La plateforme tout-en-un pour traders et investisseurs : données boursières en temps réel, analyse de marché, formation et outils de trading avancés.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">Commencer gratuitement</a>
+                        <a href="#" class="btn btn-outline">Voir la démo</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stock-market">
+                <div class="stock-header">
+                    <h2>Marché Boursier</h2>
+                    <span class="live-badge"><i class="fas fa-circle"></i> En direct</span>
+                </div>
+                <div class="stock-list">
+                    <div class="stock-item">
+                        <div class="stock-name">CAC 40</div>
+                        <div class="stock-price">7,250.12</div>
+                        <div class="stock-change positive">+1.25%</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">S&P 500</div>
+                        <div class="stock-price">4,534.12</div>
+                        <div class="stock-change positive">+0.87%</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">NASDAQ</div>
+                        <div class="stock-price">14,265.86</div>
+                        <div class="stock-change negative">-0.32%</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">DAX</div>
+                        <div class="stock-price">15,823.45</div>
+                        <div class="stock-change positive">+0.45%</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">Nikkei 225</div>
+                        <div class="stock-price">32,456.78</div>
+                        <div class="stock-change negative">-0.75%</div>
+                    </div>
+                    <div class="stock-item">
+                        <div class="stock-name">BTC/USD</div>
+                        <div class="stock-price">61,234.56</div>
+                        <div class="stock-change positive">+2.34%</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Actualités Financières</h2>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-img-container">
+                            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3" alt="Actualité financière" class="news-img">
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">La Fed maintient ses taux directeurs, quelles conséquences pour les marchés?</h3>
+                            <p class="news-excerpt">La Réserve fédérale a décidé de maintenir ses taux directeurs inchangés lors de sa dernière réunion, une décision qui influence directement les stratégies d'investissement.</p>
+                            <div class="news-meta">
+                                <span class="news-date">12 Octobre 2023</span>
+                                <a href="#" class="news-read-more">Lire plus <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-img-container">
+                            <img src="https://images.unsplash.com/photo-1640826514546-7d2eab70a4e5?ixlib=rb-4.0.3" alt="Actualité boursière" class="news-img">
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Le CAC 40 franchit les 7 250 points, une première depuis 6 mois</h3>
+                            <p class="news-excerpt">L'indice phare de la Bourse de Paris a atteint un nouveau plus haut de l'année ce jeudi, porté par les performances du secteur technologique.</p>
+                            <div class="news-meta">
+                                <span class="news-date">11 Octobre 2023</span>
+                                <a href="#" class="news-read-more">Lire plus <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-img-container">
+                            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3" alt="Actualité crypto" class="news-img">
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">Le Bitcoin dépasse les 60 000$, les analystes prévoient une nouvelle hausse</h3>
+                            <p class="news-excerpt">La cryptomonnaie reine a franchi le seuil symbolique des 60 000$ portée par des annonces positives sur l'adoption institutionnelle.</p>
+                            <div class="news-meta">
+                                <span class="news-date">10 Octobre 2023</span>
+                                <a href="#" class="news-read-more">Lire plus <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Nos Solutions</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Comparaison des Brokers</h3>
+                        <p class="feature-desc">Notre outil de comparaison vous aide à trouver le broker idéal selon vos besoins. Analysez les frais, les instruments disponibles, les plateformes de trading et les avis utilisateurs.</p>
+                        <a href="#" class="btn btn-primary">Comparer maintenant</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="feature-title">Formation Trading</h3>
+                        <p class="feature-desc">Apprenez des stratégies éprouvées avec nos formations complètes. Du débutant au trader expert, nos cours s'adaptent à votre niveau avec des exercices pratiques et des analyses de cas réels.</p>
+                        <a href="#" class="btn btn-primary">Découvrir les formations</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="feature-title">Bots de Trading</h3>
+                        <p class="feature-desc">Automatisez vos stratégies avec nos bots de trading avancés. Personnalisez les paramètres selon votre profil de risque et laissez la technologie travailler pour vous 24h/24.</p>
+                        <a href="#" class="btn btn-primary">Explorer les bots</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Sidebar droite (publicité) -->
+        <aside class="ad-sidebar right">
+            <div class="ad-title">Partenaires Privilégiés</div>
+            <div class="ad-unit">
+                <div class="ad-image">BOT TRADING PRO</div>
+                <h3>Automatisation Avancée</h3>
+                <p>Notre bot de trading utilise l'IA pour maximiser vos profits sur les marchés financiers</p>
+                <a href="#" class="ad-cta">Tester gratuitement</a>
+            </div>
+            <div class="ad-unit">
+                <div class="ad-image">NEWSLETTER PRO</div>
+                <h3>Insider Market</h3>
+                <p>Recevez chaque matin l'essentiel des marchés et les analyses exclusives</p>
+                <a href="#" class="ad-cta">S'abonner</a>
+            </div>
+            <div class="ad-unit">
+                <div class="ad-image">PORTEFEUILLE EXPERT</div>
+                <h3>Stratégie Performante</h3>
+                <p>Découvrez les allocations d'actifs des meilleurs gestionnaires de fonds</p>
+                <a href="#" class="ad-cta">Voir les performances</a>
+            </div>
+            <div class="ad-unit">
+                <div class="ad-image">APPLICATION MOBILE</div>
+                <h3>Trading Nomade</h3>
+                <p>Notre application mobile vous permet de trader où que vous soyez</p>
+                <a href="#" class="ad-cta">Télécharger</a>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>À propos de PFB</h3>
+                <p>PFB est une plateforme financière complète qui offre des outils professionnels pour les traders et investisseurs de tous niveaux.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Nos Solutions</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Comparaison de brokers</a></li>
+                    <li><a href="#">Formations trading</a></li>
+                    <li><a href="#">Bots de trading</a></li>
+                    <li><a href="#">Analyse de marché</a></li>
+                    <li><a href="#">Signaux trading</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Ressources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">Webinaires</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> contact@pfb.com</p>
+                <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                <p><i class="fas fa-map-marker-alt"></i> Paris, France</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 PFB - Plateforme Financière. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simulation de données boursières en temps réel
+        function updateStockPrices() {
+            const stockItems = document.querySelectorAll('.stock-item');
+            
+            stockItems.forEach(item => {
+                const priceElement = item.querySelector('.stock-price');
+                const changeElement = item.querySelector('.stock-change');
+                
+                let currentPrice = parseFloat(priceElement.textContent.replace(/,/g, ''));
+                let changePercent = parseFloat(changeElement.textContent.replace('%', '').replace('+', ''));
+                
+                if (changeElement.textContent.includes('-')) {
+                    changePercent = -changePercent;
+                }
+                
+                // Générer un changement aléatoire entre -0.5% et +0.5%
+                const randomChange = (Math.random() - 0.5);
+                changePercent += randomChange;
+                
+                // Mettre à jour le prix en fonction du changement
+                currentPrice = currentPrice * (1 + randomChange / 100);
+                
+                // Mettre à jour l'affichage
+                priceElement.textContent = currentPrice.toLocaleString('fr-FR', {maximumFractionDigits: 2});
+                
+                // Mettre à jour le pourcentage de changement
+                const changeText = (changePercent > 0 ? '+' : '') + changePercent.toFixed(2) + '%';
+                changeElement.textContent = changeText;
+                
+                // Mettre à jour la classe pour la couleur
+                if (changePercent > 0) {
+                    changeElement.classList.remove('negative');
+                    changeElement.classList.add('positive');
+                } else {
+                    changeElement.classList.remove('positive');
+                    changeElement.classList.add('negative');
+                }
+            });
+        }
+        
+        // Mettre à jour les prix toutes les 5 secondes
+        setInterval(updateStockPrices, 5000);
+        
+        // Animation au défilement
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.feature-card, .news-card');
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (position < screenPosition) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Initialiser l'opacité pour l'animation
+        document.querySelectorAll('.feature-card, .news-card').forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        // Initial call to position elements on page load
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
